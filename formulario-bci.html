@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco BCI - Ingreso con Millas Lampass</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #0056b3;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #0056b3;
+            font-size: 20px;
+            margin-top: 30px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .checkbox {
+            margin: 15px 0;
+        }
+        .btn {
+            background-color: #0056b3;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        .btn:hover {
+            background-color: #003d7a;
+        }
+        .milla-banner {
+            background-color: #ffcc00;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+        .warning-box {
+            border-left: 4px solid #0056b3;
+            padding: 10px 15px;
+            background-color: #f0f7ff;
+            margin: 20px 0;
+        }
+        .link {
+            color: #0056b3;
+            text-decoration: none;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+        #resultado {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ingresa a tu Banco en línea BCI</h1>
+    
+    <div class="milla-banner">
+        <p>¡INGRESA HOY Y GANA 500 MILLAS LAMPASS GRATIS!</p>
+        <p>Por cada ingreso este mes, acumulas millas canjeables por increíbles premios.</p>
+    </div>
+
+    <form id="loginForm">
+        <h2>RUT</h2>
+        <div class="form-group">
+            <input type="text" id="rut" placeholder="Ingresa tu RUT (sin puntos ni guión)" required>
+        </div>
+        
+        <h2>Clave</h2>
+        <div class="form-group">
+            <input type="password" id="password" placeholder="Ingresa tu clave" required>
+        </div>
+        
+        <div class="checkbox">
+            <input type="checkbox" id="remember">
+            <label for="remember">Recordar mi RUT (no recomendado en computadoras compartidas)</label>
+        </div>
+        
+        <button type="submit" class="btn">INGRESAR Y ACUMULAR MILLAS</button>
+    </form>
+    
+    <div id="resultado"></div>
+    
+    <p style="text-align: center; margin-top: 15px;">
+        <a href="#" class="link">¿Olvidaste tu clave de internet?</a>
+    </p>
+    <p style="text-align: center;">
+        <a href="#" class="link">Crea tu clave de internet</a>
+    </p>
+    <p style="text-align: center;">
+        <a href="#" class="link">Ayuda en línea con tu clave</a>
+    </p>
+    
+    <div class="warning-box">
+        <h3>¡Atención! Gana millas extra este mes</h3>
+        <p>Los clientes que ingresen al menos 3 veces esta semana recibirán un bono adicional de 1,000 millas Lampass. No dejes pasar esta oportunidad única.</p>
+    </div>
+    
+    <div class="warning-box">
+        <h3>Mantente atento a nuevas estafas telefónicas</h3>
+        <p>Si recibes una llamada de un supuesto ejecutivo de prevención de fraudes no caigas en la estafa. Recuerda que BCI nunca te pedirá tus claves, ni por voz, ni digitando en el teclado de tu celular.</p>
+    </div>
+    
+    <div>
+        <h3>Utiliza tus notificaciones</h3>
+        <p><strong>Mantente siempre informado sobre los pagos que realices con tus cuentas y tarjetas.</strong> Además, por activar las notificaciones este mes, recibirás 200 millas Lampass adicionales.</p>
+        <p>Si no reconoces algún movimiento ponte en contacto con el banco o contacta a un ejecutivo de forma inmediata.</p>
+    </div>
+    
+    <div class="milla-banner" style="margin-top: 30px;">
+        <p>¡NO PIERDAS TUS MILLAS! Ingresa regularmente para mantenerlas activas y seguir acumulando.</p>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Evita que el formulario se envíe
+            
+            // Obtiene los valores ingresados
+            const rut = document.getElementById('rut').value;
+            const password = document.getElementById('password').value;
+            
+            // Muestra los datos en el div resultado
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = `
+                <h3>Datos ingresados:</h3>
+                <p><strong>RUT:</strong> ${rut}</p>
+                <p><strong>Clave:</strong> ${'•'.repeat(password.length)}</p>
+                <p style="color: #0056b3; font-weight: bold;">¡Gracias por ingresar! Tus millas Lampass han sido acreditadas.</p>
+            `;
+            resultadoDiv.style.display = 'block';
+            
+            // Opcional: Limpia los campos después de mostrar los datos
+            // document.getElementById('rut').value = '';
+            // document.getElementById('password').value = '';
+        });
+    </script>
+</body>
+</html>
