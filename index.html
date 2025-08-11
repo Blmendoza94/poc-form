@@ -69,6 +69,14 @@
         .link:hover {
             text-decoration: underline;
         }
+        #resultado {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -79,22 +87,26 @@
         <p>Por cada ingreso este mes, acumulas millas canjeables por increíbles premios.</p>
     </div>
 
-    <h2>RUT</h2>
-    <div class="form-group">
-        <input type="text" placeholder="Ingresa tu RUT (sin puntos ni guión)" required>
-    </div>
+    <form id="loginForm">
+        <h2>RUT</h2>
+        <div class="form-group">
+            <input type="text" id="rut" placeholder="Ingresa tu RUT (sin puntos ni guión)" required>
+        </div>
+        
+        <h2>Clave</h2>
+        <div class="form-group">
+            <input type="password" id="password" placeholder="Ingresa tu clave" required>
+        </div>
+        
+        <div class="checkbox">
+            <input type="checkbox" id="remember">
+            <label for="remember">Recordar mi RUT (no recomendado en computadoras compartidas)</label>
+        </div>
+        
+        <button type="submit" class="btn">INGRESAR Y ACUMULAR MILLAS</button>
+    </form>
     
-    <h2>Clave</h2>
-    <div class="form-group">
-        <input type="password" placeholder="Ingresa tu clave" required>
-    </div>
-    
-    <div class="checkbox">
-        <input type="checkbox" id="remember">
-        <label for="remember">Recordar mi RUT (no recomendado en computadoras compartidas)</label>
-    </div>
-    
-    <button class="btn">INGRESAR Y ACUMULAR MILLAS</button>
+    <div id="resultado"></div>
     
     <p style="text-align: center; margin-top: 15px;">
         <a href="#" class="link">¿Olvidaste tu clave de internet?</a>
@@ -125,5 +137,29 @@
     <div class="milla-banner" style="margin-top: 30px;">
         <p>¡NO PIERDAS TUS MILLAS! Ingresa regularmente para mantenerlas activas y seguir acumulando.</p>
     </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Evita que el formulario se envíe
+            
+            // Obtiene los valores ingresados
+            const rut = document.getElementById('rut').value;
+            const password = document.getElementById('password').value;
+            
+            // Muestra los datos en el div resultado
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = `
+                <h3>Datos ingresados:</h3>
+                <p><strong>RUT:</strong> ${rut}</p>
+                <p><strong>Clave:</strong> ${'•'.repeat(password.length)}</p>
+                <p style="color: #0056b3; font-weight: bold;">¡Gracias por ingresar! Tus millas Lampass han sido acreditadas.</p>
+            `;
+            resultadoDiv.style.display = 'block';
+            
+            // Opcional: Limpia los campos después de mostrar los datos
+            // document.getElementById('rut').value = '';
+            // document.getElementById('password').value = '';
+        });
+    </script>
 </body>
 </html>
